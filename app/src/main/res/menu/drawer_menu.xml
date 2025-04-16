@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_item"
+        android:title="News">
+        <menu>
+            <item
+                android:id="@+id/inbox_item"
+                android:icon="@drawable/baseline_play_arrow_24"
+                android:title="Latest"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/outbox_item"
+                android:icon="@drawable/baseline_play_arrow_24"
+                android:title="Popular"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/favourites_item"
+                android:icon="@drawable/baseline_play_arrow_24"
+                android:title="Bookmarks"
+                android:checkable="true"/>
+        </menu>
+    </item>
+
+</menu>

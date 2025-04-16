@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_refresh"
+        android:enabled="true"
+        android:icon="@drawable/baseline_refresh_24"
+        app:showAsAction="always"
+        android:title="Refresh"/>
+    <item
+        android:id="@+id/action_vioce"
+        android:enabled="true"
+        android:icon="@drawable/baseline_mic_24"
+        app:showAsAction="always"
+        android:title="Voice Search"/>
+</menu>
