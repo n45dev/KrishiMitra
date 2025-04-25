@@ -25,7 +25,7 @@ class ProductCartAdapter(private val products: List<Product>, private val listen
         }
 
         fun bind(product: Product) {
-            productTitleText.text = product.title
+            productTitleText.text = product.name
             productPriceText.text = "₹${product.price} per kg"
             productDescriptionText.text = product.description
         }

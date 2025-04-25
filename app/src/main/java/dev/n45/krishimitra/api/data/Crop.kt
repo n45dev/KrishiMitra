@@ -2,14 +2,14 @@ package dev.n45.krishimitra.api.data
 
 data class Crop(
     val id: Int,
-    val image: String?,
-    val type: String,
-    val tempRange: String,
-    val phRange: String,
-    val duration: Int,
-    val title: String,
+    val name: String,
     val description: String,
-    val soilType: String,
-    val rainfallRequired: Boolean,
-    val marketValue: Int
+    val image: String,
+    val duration: String,
+    val type: String,
+    val soil_type: String,
+    val temp_range: String,
+    val is_rainfall_required: String,
+    val ph_range: String,
+    val market_value: Int
 )

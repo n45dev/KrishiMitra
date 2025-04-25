@@ -174,7 +174,7 @@ class CropsFragment : Fragment(), CropAdapter.OnItemClickListener {
                 crops
             } else {
                 crops.filter { crop ->
-                    crop.title.lowercase().contains(title.lowercase())
+                    crop.name.lowercase().contains(title.lowercase())
                 }
             }
             cropAdapter = CropAdapter(filteredCropList, this@CropsFragment)
@@ -215,16 +215,16 @@ class CropsFragment : Fragment(), CropAdapter.OnItemClickListener {
     override fun onItemClick(crop: Crop) {
         val intent = Intent(context, CropActivity::class.java)
         intent.putExtra("crop_id", crop.id)
-        intent.putExtra("crop_title", crop.title)
+        intent.putExtra("crop_title", crop.name)
         intent.putExtra("crop_image", crop.image)
         intent.putExtra("crop_description", crop.description)
         intent.putExtra("crop_duration", crop.duration)
         intent.putExtra("crop_type", crop.type)
-        intent.putExtra("crop_soil_type", crop.soilType)
-        intent.putExtra("crop_temp_range", crop.tempRange)
-        intent.putExtra("crop_is_rainfall_required", crop.rainfallRequired)
-        intent.putExtra("crop_ph_range", crop.phRange)
-        intent.putExtra("crop_market_value", crop.marketValue)
+        intent.putExtra("crop_soil_type", crop.soil_type)
+        intent.putExtra("crop_temp_range", crop.temp_range)
+        intent.putExtra("crop_is_rainfall_required", crop.is_rainfall_required)
+        intent.putExtra("crop_ph_range", crop.ph_range)
+        intent.putExtra("crop_market_value", crop.market_value)
         startActivity(intent)
         Log.d("CropsFragment", "Clicked on crop: ${crop.id}")
     }

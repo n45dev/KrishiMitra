@@ -15,6 +15,7 @@ import dev.n45.krishimitra.api.data.TokenResponse
 import kotlinx.coroutines.launch
 import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
+import dev.n45.krishimitra.api.data.LoginRequest
 import dev.n45.krishimitra.api.data.User
 
 class LoginActivity : AppCompatActivity() {
@@ -34,6 +35,13 @@ class LoginActivity : AppCompatActivity() {
         val emailText = findViewById<EditText>(R.id.email)
         val passwordText = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login_button)
+        val registerButton = findViewById<Button>(R.id.register_button)
+
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         loginButton.setOnClickListener {
             val email = emailText.text.toString()
@@ -47,15 +55,18 @@ class LoginActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 try {
-                    tokenData = getToken(email, password)
-                    val user = getUser(tokenData.access_token)
+                    tokenData = getToken(LoginRequest(
+                        email = email,
+                        password = password
+                    ))
+                    val user = getUser(tokenData.token)
                     val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
                     sharedPreferences.edit {
-                        putString("access_token", tokenData.access_token)
+                        putString("access_token", tokenData.token)
                         putString("user_name", user.name)
                         putString("user_email", user.email)
                     }
-                    Log.d("LoginActivity", "Token: ${tokenData.access_token}")
+                    Log.d("LoginActivity", "Token: ${tokenData.token}")
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     val toast = Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT)
@@ -69,8 +80,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun getToken(username: String, password: String): TokenResponse {
-        return Client.apiService.getToken(username, password)
+    private suspend fun getToken(loginRequest: LoginRequest): TokenResponse {
+        return Client.apiService.loginUser(loginRequest)
     }
 
     private suspend fun getUser(token: String): User {

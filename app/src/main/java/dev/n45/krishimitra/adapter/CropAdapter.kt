@@ -27,13 +27,13 @@ class CropAdapter(private val crops: List<Crop>, private val listener: OnItemCli
         }
 
         fun bind(crop: Crop) {
-            cropNameText.text = crop.title
+            cropNameText.text = crop.name
             cropTypeText.text = crop.type
             cropDescriptionText.text = crop.description
             val image = crop.image
 
             Glide.with(itemView.context)
-                .load("http://100.100.1.2:8001/$image")
+                .load("http://10.0.2.2:8001/$image")
                 .into(cropImage)
         }
 

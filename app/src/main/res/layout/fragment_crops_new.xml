@@ -13,7 +13,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
@@ -21,7 +22,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Search crops"
                 app:menu="@menu/search_bar_menu"
-                android:background="@android:color/transparent"
                 app:layout_scrollFlags="scroll|enterAlways" />
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -49,6 +49,7 @@
                 android:id="@+id/recyclerViewResults"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:scrollbars="none" />
         </com.google.android.material.search.SearchView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

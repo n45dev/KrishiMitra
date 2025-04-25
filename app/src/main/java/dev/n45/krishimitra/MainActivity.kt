@@ -45,57 +45,6 @@ class MainActivity : AppCompatActivity() {
             logOut()
         }
 
-        val topBar = findViewById<com.google.android.material.appbar.MaterialToolbar>(R.id.topAppBar)
-
-        val actionLogout = topBar.menu.findItem(R.id.action_logout)
-        val actionInfo = topBar.menu.findItem(R.id.action_info)
-        val actionSettings = topBar.menu.findItem(R.id.action_settings)
-        val actionSync = topBar.menu.findItem(R.id.action_sync)
-        val actionChat = topBar.menu.findItem(R.id.action_chat)
-
-        actionChat.setOnMenuItemClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-            true
-        }
-
-        actionLogout.setOnMenuItemClickListener {
-            val builder = MaterialAlertDialogBuilder(this)
-            builder.setTitle("Logout")
-                .setMessage("Are you sure you want to logout?")
-                .setPositiveButton("Yes") { _, _ ->
-                    logOut()
-                }
-                .setNegativeButton("No") { dialog, _ ->
-                    dialog.dismiss()
-                }
-            builder.show()
-            true
-        }
-
-        actionInfo.setOnMenuItemClickListener {
-            val intent = Intent(this, InfoActivity::class.java)
-            startActivity(intent)
-            true
-        }
-
-        actionSettings.setOnMenuItemClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-            true
-        }
-
-        actionSync.setOnMenuItemClickListener {
-            val builder = MaterialAlertDialogBuilder(this)
-            builder.setTitle("Syncing...")
-                .setMessage("Fetching latest data for you.")
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.dismiss()
-                }
-            builder.show()
-            true
-        }
-
         homeFragment = HomeFragment()
         cropsFragment = CropsFragment()
         podcastsFragment = PodcastsFragment()

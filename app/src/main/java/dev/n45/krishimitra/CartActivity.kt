@@ -73,7 +73,7 @@ class CartActivity : AppCompatActivity(), ProductCartAdapter.OnItemClickListener
     }
 
     override fun onItemClick(product: Product) {
-        Log.d("CartActivity", "Clicked on product: ${product.title}")
+        Log.d("CartActivity", "Clicked on product: ${product.name}")
     }
 
     private fun clearCart() {

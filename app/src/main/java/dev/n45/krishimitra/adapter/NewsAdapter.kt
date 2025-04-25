@@ -11,55 +11,58 @@ import dev.n45.krishimitra.R
 import dev.n45.krishimitra.api.data.News
 import dev.n45.krishimitra.fragment.HomeFragment
 
-class NewsAdapter(private val NewsList: List<News>, private val listener: HomeFragment) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val newsList: List<News>, private val listener: HomeFragment) :
+    RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(News: News)
+        fun onItemClick(news: News)
     }
 
-    inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val NewsTitleText: TextView = itemView.findViewById(R.id.news_title)
-        private val NewsDateText: TextView = itemView.findViewById(R.id.news_date)
-        private val NewsShortDescriptionText: TextView = itemView.findViewById(R.id.news_desc)
-        private val NewsImage: ImageView = itemView.findViewById(R.id.news_image)
+    inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        private val newsTitleText: TextView = itemView.findViewById(R.id.news_title)
+        private val newsDateText: TextView = itemView.findViewById(R.id.news_date)
+        private val newsShortDescriptionText: TextView = itemView.findViewById(R.id.news_desc)
+        private val newsImage: ImageView = itemView.findViewById(R.id.news_image)
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(news: News) {
-            NewsTitleText.text = news.title
-            NewsDateText.text = news.date
-            NewsShortDescriptionText.text = news.short_description
+            newsTitleText.text = news.title
+            newsDateText.text = news.date
+            newsShortDescriptionText.text = news.short_description
 
             val image = news.image
 
             if (image != null) {
                 Glide.with(itemView.context)
-                    .load("http://100.100.1.2:8001/$image")
-                    .into(NewsImage)
+                    .load("http://10.0.2.2:8001/$image")
+                    .into(newsImage)
             } else {
-                NewsImage.setImageResource(R.drawable.f1)
+                newsImage.setImageResource(R.drawable.f1)
             }
         }
 
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(NewsList[position])
+                listener.onItemClick(newsList[position])
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.news_card, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.news_card, parent, false)
         return NewsViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val currentNews = NewsList[position]
+        val currentNews = newsList[position]
         holder.bind(currentNews)
     }
 
-    override fun getItemCount() = NewsList.size
+    override fun getItemCount() = newsList.size
 }

@@ -23,11 +23,12 @@ import kotlinx.coroutines.launch
 
 private lateinit var productAdapter: ProductAdapter
 private lateinit var recyclerView: RecyclerView
-private lateinit var cartPriceText: TextView
 private var cartPrice: Double = 0.0
 private var cartItems: MutableList<Product> = mutableListOf()
 
 class BuyFragment : Fragment(), ProductAdapter.OnItemClickListener {
+
+    private lateinit var cartPriceText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,7 +126,7 @@ class BuyFragment : Fragment(), ProductAdapter.OnItemClickListener {
         cartPrice += product.price.toDouble()
         cartPriceText.text = ("₹$cartPrice").toString()
         cartItems.add(product)
-        Log.d("BuyFragment", "Product added to cart: ${product.title}")
+        Log.d("BuyFragment", "Product added to cart: ${product.name}")
         Log.d("BuyFragment", "Cart items: $cartItems")
     }
 
